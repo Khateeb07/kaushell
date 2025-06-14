@@ -55,6 +55,8 @@ kaushell$ logs
 gcc kaushell.c -o kaushell
 ./kaushell
 
+---
+
 Technologies Used
 - C Language
 - Linux System Calls
