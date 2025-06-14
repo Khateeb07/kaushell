@@ -40,23 +40,6 @@ stdio.h, unistd.h, fcntl.h, errno.h are tokenized manually via `strtok()` for ma
 
 ---
 
-## 🖥 Sample Usage
-
-kaushell$ ls
-kaushell$ ls | sort
-kaushell$ cat < file.txt > output.txt
-kaushell$ logs
-
----
-
-## 🧪 How to Run
-
-```bash
-gcc kaushell.c -o kaushell
-./kaushell
-
----
-
 Technologies Used
 - C Language
 - Linux System Calls
