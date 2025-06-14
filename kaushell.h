@@ -10,6 +10,7 @@
 #define FFLAG (O_WRONLY|O_CREAT|O_TRUNC)
 #define FMODE (S_IRUSR|S_IWUSR)
 #define MAX_BUFFER 256
+#define LOGS "logs"
 #define QUIT_STRING "quit"
 int parseAndRedirectIn(char*);
 int parseAndRedirectOut(char*);
@@ -18,3 +19,5 @@ int getArgv(const char*, const char*, char***);
 void executeRedirect(char*, int, int);
 static void perror_exit(char*);
 void printBanner();
+void maintainLogs(char*);
+void displayLogs();

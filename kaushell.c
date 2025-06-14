@@ -9,17 +9,25 @@ int main(int argc, char* argv[]){
 	pid_t pid;
 	printBanner();
 	while(1){
-		fputs("\033[1;31mkaushell$ \033[0;33m", stdout);
-// Puts "kaushell$ " on the command line
+		fputs("\033[1;31mkaushell$ \033[0;33m", stdout);	// Puts "kaushell$ " on the command line
+
+// Stores input in 'inbuf' and checks for NULL
 		if ((fgets(inbuf, MAX_BUFFER, stdin))==NULL)
 			continue;
-// Takes the input and stores it in 'inbuf' and as checks whether it is NULL
-		inbuf[strlen(inbuf)-1]='\0';
-// At length-1 of inbuf '\0'(null) is stored
+		inbuf[strlen(inbuf)-1]='\0';	// Storing '\0'(NULL) at length-1
+
+// Maintaining history for each command in 'logFile.txt'
+		if(inbuf[0]!='\0' && inbuf[0]!=' ' && inbuf[0]!='\n' && inbuf[0]!='\t') maintainLogs(inbuf);
+
+// Handling 'logs' command...
+		if(strcmp(inbuf, LOGS)==0) {
+			displayLogs();
+			continue;
+		}
+
+// Handling 'quit' command...
 		if(strcmp(inbuf, QUIT_STRING)==0)
 			exit(0);
-// Compares inbuf and macro 'QUIT_STRING' if it is zero then 'kaushell$ ' prompt appears again
-
 // Forking is done and main process will be divided in 2 processes
 		switch(pid=fork()) {
 			case -1:
@@ -40,7 +48,7 @@ void executeCmd(char* cmd){
 	int fds[2];
 	char** chargv;
 	pid_t pid;
-	int in_fd=0;
+//	int in_fd=0;
 	char** pipelist;
 	count=getArgv(cmd, "|", &pipelist);
 	if(count<=0) {
@@ -175,8 +183,24 @@ void printBanner() {
 	for(int i=0; i<80; i++)
 		printf("=");
 	printf("\n\n%*s%s%*s\n", 30, "", "Welcome to KAUSHELL", 30, "");
-	printf("%*s%s%*s\n\n", 23, "", "Developed by Khateeb Aamir Usmani", 23, "");
+	printf("%*s%s%*s\n", 23, "", "Developed by Khateeb Aamir Usmani", 23, "");
+//	printf("%*s%s%*s\n\n", 30, "", "kaushell version 1.0", 30, "");
 	for(int i=0; i<80; i++)
 		printf("=");
 	printf("\nType 'quit' to quit the shell.\n\n");
+}
+void maintainLogs(char inbuf[]) {
+	FILE* file=fopen("logFile.txt", "a+");
+	int i=0;
+	while(i<strlen(inbuf))
+		fputc(inbuf[i++], file);
+	fputc(10, file); // Adds new line to each command
+	fclose(file);
+}
+void displayLogs() {
+	FILE* file=fopen("logFile.txt", "r");
+	int ch;
+	while((ch=fgetc(file))!=EOF)
+		fputc(ch, stdout);
+	fclose(file);
 }
