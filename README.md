@@ -40,15 +40,20 @@ stdio.h, unistd.h, fcntl.h, errno.h are tokenized manually via `strtok()` for ma
 
 ---
 
-Technologies Used
-- C Language
-- Linux System Calls
-- File Descriptors, Forking, Exec Family
-- stdio.h, unistd.h, fcntl.h, errno.h
+## 🧱 Technologies Used
 
-Learning Objectives
-- Understanding Unix process control (fork, exec, wait)
-- Handling inter-process communication via pipes
-- File redirection using system-level APIs
-- Shell parsing and tokenization
-- Working with file I/O (fopen, fputc, fgetc)
+- C Language  
+- Linux System Calls  
+- File Descriptors, Forking, Exec Family  
+- stdio.h, unistd.h, fcntl.h, errno.h  
+
+---
+
+## 🎯 Learning Objectives
+
+- Understanding Unix process control (fork, exec, wait)  
+- Handling inter-process communication via pipes  
+- File redirection using system-level APIs  
+- Shell parsing and tokenization  
+- Working with file I/O (fopen, fputc, fgetc)  
+
