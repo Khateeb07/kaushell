@@ -183,7 +183,7 @@ void printBanner() {
 	for(int i=0; i<80; i++)
 		printf("=");
 	printf("\n\n%*s%s%*s\n", 30, "", "Welcome to KAUSHELL", 30, "");
-	printf("%*s%s%*s\n", 23, "", "Developed by Khateeb Aamir Usmani", 23, "");
+	printf("%*s%s%*s\n\n", 23, "", "Developed by Khateeb Aamir Usmani", 23, "");
 //	printf("%*s%s%*s\n\n", 30, "", "kaushell version 1.0", 30, "");
 	for(int i=0; i<80; i++)
 		printf("=");
